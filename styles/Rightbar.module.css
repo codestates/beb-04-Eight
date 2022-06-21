@@ -1,9 +1,16 @@
 .rightbarContent {
-  flex-grow: 1;
-  padding: 25px;
-  width: 80%;
-  max-width: 600px;
+  display: flex;
+  flex-direction: column;
 
+  padding: 25px;
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+
+  position: sticky;
+  top: 0;
+  right: 0;
+  
   border-left: 1px solid #e2e2e2;
 }
 
@@ -49,4 +56,33 @@
   font-weight: normal;
   padding: 15px;
   color: #f0f4f7;
+}
+
+.login{
+  margin: 5px;
+  width: 150px;
+  min-height: 30px;
+
+  border-radius: 15px;
+  background-color: black;
+  color: white;
+}
+
+.searchBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 270px;
+  padding: 5px;
+  margin-top: 20px;
+
+  border: 1px solid #b3b3b3;
+  border-radius: 20px;
+}
+
+.search{
+  width: 230px;
+  margin: 5px;
+  border: 0px;
 }
