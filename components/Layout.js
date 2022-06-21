@@ -3,6 +3,16 @@ import Sidebar from "./Sidebar"
 import Rightbar from "./Rightbar"
 import styles from '../styles/Layout.module.css'
 
+/*
+==================================================
+===============화면 레이아웃 컴포넌트==================
+==================================================
+수정일자 : 2022. 06. 21
+사용 페이지 : /_app.js
+완 : UI 구현
+미완: 
+*/
+
 export default function Layout({children}) {
   return (
     <div className={styles.container}>
@@ -13,7 +23,7 @@ export default function Layout({children}) {
       </Head>
       <Sidebar/>
       {children}
-      <Rightbar/>
+      <Rightbar/>      
     </div>
   )
 }
