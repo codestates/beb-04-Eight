@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ahreum0714/beb-04-Eight.git"
+    "url": "git+https://github.com/codestates/beb-04-Eight.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Ahreum0714/beb-04-Eight/issues"
+    "url": "https://github.com/codestates/beb-04-Eight/issues"
   },
-  "homepage": "https://github.com/Ahreum0714/beb-04-Eight#readme",
+  "homepage": "https://github.com/codestates/beb-04-Eight#readme",
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
