@@ -4,10 +4,11 @@ import {AiFillHome} from 'react-icons/ai'
 import {MdRateReview} from 'react-icons/md'
 import {IoMdBookmarks} from 'react-icons/io'
 
+
 export default function Sidebar() {
   return (
     <div className={styles.siderContent}>
-      <img className={styles.logo} src="logo.png"></img>
+      <img className={styles.logo} src={"/Logo.png"}></img>
       <div className={styles.menu}>
         <Link href="/" className={styles.link}>
           <div className={styles.menuItems}>
