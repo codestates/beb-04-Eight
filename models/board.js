@@ -16,8 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Board.init({
     title: DataTypes.STRING,
     writer: DataTypes.STRING,
-    content: DataTypes.STRING,
-    created_at: DataTypes.DATE
+    content: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Board',
