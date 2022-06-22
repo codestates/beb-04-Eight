@@ -1,5 +1,6 @@
 module.exports = {
-    login: require('./login'),
-    logout: require('./logout'),
-    userinfo: require('./mypage'),
-  };
+  login: require("./login"),
+  logout: require("./logout"),
+  mypage: require("./mypage"),
+  join: require("./join"),
+};
