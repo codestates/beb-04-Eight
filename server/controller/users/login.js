@@ -22,7 +22,7 @@ module.exports = {
       // 비밀번호가 일치한다면, session에 아이디 정보 저장
       req.session.save(function () {
         req.session.userId = userInfo.userId;
-        res.status(201).json({ message: "login success" });
+        res.status(200).json({ message: "login success" });
       });
     } catch (err) {
       console.log(err);

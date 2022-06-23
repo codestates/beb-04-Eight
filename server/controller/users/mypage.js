@@ -3,7 +3,7 @@ const { User } = require("../../models");
 module.exports = {
   get: async (req, res) => {
     if (!req.session.userId) {
-      return res.status(400).json({ message: "not authorized" });
+      return res.status(401).json({ message: "not authorized" });
     }
 
     const result = await User.findOne({
