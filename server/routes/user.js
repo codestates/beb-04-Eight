@@ -3,7 +3,7 @@ var router = express.Router();
 
 const { usersController } = require("../controller");
 
-// * POST /users/login
+// * POST api/users/login
 router.post("/login", usersController.login.post);
 
 // * POST /users/logout
