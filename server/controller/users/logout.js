@@ -8,10 +8,9 @@ module.exports = {
     // 서버가 클라이언트의 쿠키를 임의로 삭제할 수는 없습니다. 대신, set-cookie로 세션 아이디의 키값을 무효한 값으로 갱신해야 합니다.
 
     if (!req.session.userId) {
-      // your code here
-      res.status(400).send();
+      res.status(400).send("로그아웃 실패");
     } else {
-      res.status(200).send();
+      res.status(200).send("로그아웃 성공");
       req.session.destroy();
     }
   },
