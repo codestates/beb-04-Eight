@@ -27,9 +27,10 @@ module.exports = {
       console.log(err);
     }
   },
+
   put: async (req, res) => {
     if (!req.session.userId) {
-      res.status(401).json({ message: "Not authorized" });
+      return res.status(401).json({ message: "Not authorized" });
     }
 
     try {
@@ -46,7 +47,7 @@ module.exports = {
       });
 
       if (req.session.userId !== boardInfo.User.userId) {
-        res.status(403).json({ message: "작성자만 글을 수정할 수 있습니다" });
+        return res.status(403).json({ message: "작성자만 글을 수정할 수 있습니다" });
       }
 
       const updatedRows = await Board.update(
@@ -71,8 +72,37 @@ module.exports = {
       console.log(err);
     }
   },
+
   delete: async (req, res) => {
-    console.log("Delete board!");
-    res.status(204);
+    if (!req.session.userId) {
+      return res.status(401).json({ message: "Not authorized" });
+    }
+
+    try {
+      const { id } = req.params;
+
+      const boardInfo = await Board.findOne({
+        where: { id: id },
+        attributes: ["user_id"],
+        include: {
+          model: User,
+          attributes: ["userId"],
+        },
+      });
+
+      if (!boardInfo) {
+        return res.status(404).json({ message: "Not found" });
+      }
+
+      if (req.session.userId !== boardInfo.User.userId) {
+        return res.status(403).json({ message: "작성자만 글을 삭제할 수 있습니다" });
+      }
+
+      await Board.destroy({ where: { id: id } });
+
+      res.status(204).send();
+    } catch (err) {
+      console.log(err);
+    }
   },
 };
