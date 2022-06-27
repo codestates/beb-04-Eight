@@ -1,5 +1,5 @@
 module.exports = {
   usersController: require("./users"),
-  // boardController: require("./board"),
+  boardController: require("./board"),
   web3Controller: require("./web3"),
 };
