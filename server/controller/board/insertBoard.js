@@ -1,5 +1,4 @@
-const { Board } = require("../../models");
-const { User } = require("../../models");
+const { Board, User } = require("../../models");
 
 module.exports = {
   post: async (req, res) => {
