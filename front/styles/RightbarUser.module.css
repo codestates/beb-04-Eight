@@ -1,0 +1,41 @@
+.rightbarUserContainer{
+  display: flex;  
+  flex-direction: column;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 280px;
+}
+
+.imgBox{
+  display:block;
+  overflow: hidden;
+  border: 1px solid black;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+}
+
+.rightbarUserImg{
+  width: 100px;
+  height: 100px;
+}
+
+.textName{
+  margin-top: 5px;
+  font-size: 1.8ch;
+  font-weight: 500;
+}
+
+.textFollow{
+  font-size: 1.5ch;
+  font-weight: 400;
+  color: #7e7e7e;
+}
+
+.textIntro{
+  margin-top: 20px;
+  font-size: 1.2ch;
+  font-weight: 400;
+  color: #7e7e7e;
+  word-break: break-all;
+}

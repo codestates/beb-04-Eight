@@ -1,0 +1,35 @@
+.wrapContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 550px;
+  padding: 50px;
+
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.wrapButton{
+  border: 0px;
+  background-color: transparent;
+  color: rgb(0, 168, 0);
+  font-weight: 600;
+  font-size: 1.6ch;
+}
+
+.modalContainer{
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: white;
+  opacity: 0.95;
+}

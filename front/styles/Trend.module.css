@@ -1,0 +1,36 @@
+.trends {
+  background-color: white;
+  border-radius: 25px;
+  min-height: 100vh;
+  max-width: 290px;
+  margin-top: 20px;
+  padding: 20px;
+  font-weight: bold;
+  font-size: 18px;
+  overflow: hidden;
+  color: black;
+}
+
+.trend {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+  padding: 10px;
+}
+
+.trend:hover {
+  cursor: pointer;
+  background-color: #e1e5ea;
+}
+
+.trendImg {
+  width: 100px;
+  border-radius: 3px;
+}
+
+.trendText {
+  font-size: 15px;
+  font-weight: normal;
+}
