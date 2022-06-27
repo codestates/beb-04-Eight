@@ -24,6 +24,7 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
+// 모델 간의 관계 설정 통합
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);

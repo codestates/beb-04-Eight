@@ -18,7 +18,7 @@ module.exports ={
             //   });
         
             //트랜잭션을 통해 보낼 ABI코드 인코딩
-            const data = myContract.methods.transfer('0x52E33b9B79e1A4455381BF776A1bA41211C66085', 100000).encodeABI();
+            const data = myContract.methods.transfer('0xecf79a71ac1becf5f1a1002008931e5079cd00d5', 100000).encodeABI();
 
             async function getTOKENBalanceOf(address){ //해당 주소에 myContract로 생성된 토큰 잔액 보기 
                 return await myContract.methods.balanceOf(address).call();                        
@@ -32,7 +32,7 @@ module.exports ={
             //     //.then(function(receipt){ console.log("Transaction receipt: ", receipt); getETHBalanceOf();  })
             //     .then(req => { 
             //             /* The trx was done. Write your acctions here. For example getBalance */
-            //             getTOKENBalanceOf('0x52E33b9B79e1A4455381BF776A1bA41211C66085').then ( balance => { console.log('0x52E33b9B79e1A4455381BF776A1bA41211C66085' + " Token Balance: " + balance); });
+            //             getTOKENBalanceOf('0xecf79a71ac1becf5f1a1002008931e5079cd00d5').then ( balance => { console.log('0xecf79a71ac1becf5f1a1002008931e5079cd00d5' + " Token Balance: " + balance); });
             //             return true;  
             //     }) 
             const blockNumber = await web3.eth.getBlockNumber();
