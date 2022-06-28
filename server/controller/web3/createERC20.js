@@ -17,9 +17,13 @@ module.exports = {
             // await provider.send("eth_requestAccounts", []);
             // const signer = provider.getSigner() 
 
+            const tokenName = 'testToken';
+
+            const tokenSymbol = 'tt';
+
             myContract.deploy({  //컨트랙트 배포
                 data:'0x' +  bytecode,
-                arguments: ['testToken3', 'tt'],
+                arguments: [tokenName, tokenSymbol],
             })
             .send({     //배포한 컨트랙트 전송
                 from:accounts[0],
@@ -28,12 +32,15 @@ module.exports = {
                 console.log(error)
             })
             .then( data =>{
-                console.log(data.options.address); //배포된 컨트랙트의 주소
-                res.status(200).send('컨트랙트 배포 성공');
+                const address = data.options.address;
+                console.log(address); //배포된 컨트랙트의 주소
+                res.status(200).json({
+                    message: "deploying Successed",
+                })
             })
             
         } catch (error) {
-            console.log(error)
+            res.status(502);
         }
         
     }
