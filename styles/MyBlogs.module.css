@@ -20,6 +20,14 @@
   margin-bottom: 80px;
   font-size: 30px;
   font-weight: 700;
+
+  background-color: rgb(235, 255, 220);
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 3em;
+  width:  100%;
+
 }
 
 
@@ -40,26 +48,63 @@
   height: 100%
 }
 
+
+.follower {
+  margin-top: 15px;
+  text-align: center;
+  color :rgba(52, 52, 52, 0.719);
+  font-weight: 700;
+  background-color: rgb(232, 224, 215);
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 3em;
+  width: 100%;
+}
+
+
 .name {
   margin-top: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
+  background-color: rgb(251, 230, 206);
+  color :rgba(52, 52, 52, 0.719);
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 3em;
+  width:  100%;
 }
 
 .description {
 
   margin-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   font-size: 20px;
-  font-weight: 500;
+  font-weight: 600;
+  color :rgba(52, 52, 52, 0.719);
+  background-color :rgb(214, 236, 255);
+  padding: 20px 250px;
+  box-sizing: border-box;
+  text-align: center;
+  width:  100%;
+  padding: 20px;
+  border-radius: 3em;
 }
 
 .myToken{
-  margin-top: 50px;
+  margin-top: 20px;
   margin-bottom: 30px;
   font-size: 25px;
   font-weight: 500;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 3em;
+  width:  100%;
+  color :rgba(52, 52, 52, 0.719);
+  background-color :rgb(255, 216, 130);
+  padding: 20px 250px;
 }
 
 .blogs {
@@ -77,6 +122,8 @@
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
+  color: rgb(0, 0, 0);
+  background-color :rgb(205, 255, 237);
 }
 
 
@@ -86,4 +133,5 @@
   padding: 10px;
   border-radius: 10px;
   cursor: pointer;
+  background-color :rgb(216, 255, 210);
 }
