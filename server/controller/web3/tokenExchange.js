@@ -42,11 +42,11 @@ module.exports = {
                 )
                 return result;
             }
-            const beforeBalance = await getBalance(userAddress);
+            const beforeBalance = await getBalance(userAddress); // 사용자의 토큰 잔액
             
-            const serveAmount = req.body.serveAmount; 
+            const serveAmount = req.body.serveAmount; // 전송할 토큰 양
 
-            if(beforeBalance >= serveAmount){
+            if(beforeBalance >= serveAmount){ 
                 setTransfer(targetAddress,serveAmount)
 
                 const userBalance = await getBalance(userAddress);
