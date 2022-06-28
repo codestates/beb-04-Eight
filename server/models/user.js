@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // User:Board -> 1:N 관계
       const { User, Board } = models;
-      User.hasMany(Board);
+      User.hasMany(Board, {
+        foreignKey: "user_id",
+      });
     }
   }
   User.init(

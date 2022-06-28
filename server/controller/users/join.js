@@ -6,7 +6,7 @@ const { User } = require("../../models");
 module.exports = {
   post: async (req, res, next) => {
     try {
-      const { userId, userName, password, phone } = req.body;
+      const { userId, userName, password, phone, introduction } = req.body;
 
       // 아이디 중복 체크
       const checkID = await User.findOne({
@@ -45,6 +45,7 @@ module.exports = {
               password: hashedPassword,
               userName: userName,
               phone: phone,
+              introduction: introduction,
               address: address,
               privateKey: privateKey,
             });
