@@ -1,0 +1,17 @@
+.menuItems {
+  display: flex;
+  justify-content: flex-start;
+  gap: 14px;
+  margin-top: 20px;
+  align-items: center;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 1000px;
+  color: rgb(11, 3, 3);
+  text-decoration: none;
+}
+
+.menuItems:hover {
+  cursor: pointer;
+}

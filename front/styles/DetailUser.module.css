@@ -1,0 +1,24 @@
+.detailUserContainer{
+  display: flex;  
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.detailUserLeft{
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 50%;  
+}
+
+.detailUserRight{
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
+  gap: 10px;
+  color: rgb(149, 149, 149);
+}

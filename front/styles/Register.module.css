@@ -1,0 +1,28 @@
+.registerContainer{  
+  display: flex;
+  flex-direction: column;
+  
+  margin-bottom: 60px;
+  gap: 5px;
+}
+
+.registerTitle{
+  text-align: center;
+}
+
+.registerButton{
+  width: 80px;
+  height: 30px;
+  margin-top: 15px;
+
+  border: 1px solid #9b9a9a;
+  border-radius: 13px;
+  background-color: transparent;
+
+  align-self: center;
+  
+}
+
+.confirmPwTxt{
+  font-size: 1.2ch;
+}
