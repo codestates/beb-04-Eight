@@ -17,9 +17,6 @@ export default function Home({result}) {
   const [blogData, SetblogData] = useState(result);
   const [loading, SetLoading] = useState(false);
 
-
-
-
   const option = {
     root : null,
     rootMargin: '0px',

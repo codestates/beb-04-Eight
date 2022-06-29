@@ -1,9 +1,7 @@
 
 import styles from '../styles/MyBlogs.module.css'
-import { useEffect, useState } from "react";
-import { useRouter } from 'next/router'
+import React, { useEffect, useState } from "react";
 import Content from '../components/Home/Content'
-// import blogsContent from '../dumi/contentData.json'
 
 import axios from "axios"; // 백엔드랑 프론트엔드랑 통신을 쉽게하기 위해 axios 사용
 
@@ -24,50 +22,64 @@ export default function myBlogs() {
     }, []); */  
     
 
+    const API_URL = "https://12062188-9e72-4a09-853a-00c16cf50029.mock.pstmn.io/board/boardList/"
 
- /* const FindMydummyPosts = async () => {
-   
-  useEffect(()=> {
-    await axios       //서버로 id 전달하면 해당하는 id로 작성된 글 목록들 가져오기
+    useEffect(() => {
+      const alldata = async () => {
+        try {
+          const response = await axios.get(
+           API_URL
+          );
+          console.log(response.data)
+          setBlogs(response.data)
+          ; // 데이터는 response.data 안에 들어있습니다.
+        } catch (e) {
+          console.error(e)
+        }
+      };
+  
+      alldata();
+    }, []);
 
-      .post('http://localhost:8080//board/boardList', {  userId : userId })
 
-      .then((res) => { setBlogs(res.data);}) // post보내고 받은 데이터 출력 시키기 ( json화 필요 ) ( 받아올 데이터 name, title, text)
-
-      .catch((err) => { if (err) { console.log(err.res.data); } });
-
-  }, [])
-
-  };  */
+  function ExploreNFT()  {              // 구매 가능한 NFT 목록들 가져온 페이지로 
+    window.open("ExploreNFT");
+  }
  
+  function seeMyNFT()  {                // 내가 보유하고 있는 NFT 목록 페이지
+    window.open('seeMyNFT');
+  }
  
+  function hisBlogs()  {                // 내가 보유하고 있는 NFT 목록 페이지
+    window.open('hisBlogs');
+  }
+
 
   return (
     <div className={styles.myBlogscontainer}>
       <div className={styles.myBlogs}>myBlogs</div>
 
-      <div className={styles.imgcontainer}>
-        
+      <div className={styles.imgcontainer}>   
       <img className={styles.profileimg} src='/r.jpg'></img>
-      
       </div>
+      <div className={styles.follower}>follower : 6.7k</div>
+      <div className={styles.name }> name : {blogs.userName} </div>
+      <div className={styles.description}> PhoneNum : {blogs.phone} </div>
 
-      <div className={styles.name }> name : Ryan Reynolds </div>
-      <div className={styles.description}> description : Blockchain Developer </div>
-
-        <div className={styles.myToken}>myToken : </div>
+        <div className={styles.myToken}>myToken : {blogs.tokenBalance} </div>
       
-        <div className>
-          <button className={styles.button_Explore_NFT}>Explore NFT </button>
-          <button className={styles.button_see_my_NFT}>See my NFT</button>
+        <div>
+          <button className={styles.button_Explore_NFT}onClick={ExploreNFT}>Explore NFT</button>
+          <button className={styles.button_see_my_NFT} onClick={seeMyNFT}>See my NFT</button>
+          <button className={styles.button_see_my_NFT} onClick={hisBlogs}>hisBlogs</button>
         </div>
 
           <div className={styles.blogs}>
-          {/* {blogsContent.map((data, i) => {            
-            return (
-              <Content key={data.id} id={data.id} title={data.title} content={data.content} writer={data.writer} create_date={data.create_date}/>
-            );
-          })} */}
+          {blogs.map((data) => {
+   return (
+    <Content key={data.id} id={data.id} title={data.title} content={data.content} writer={data.writer} create_date={data.create_date}/>
+   )
+  })}
           </div>
         </div>
    
