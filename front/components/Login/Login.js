@@ -14,16 +14,22 @@ import { changeModalState, changeLoginState } from "../../redux/actions/index.js
 */
 
 export default function Login() {
+
   const dispatch = useDispatch();
 
   const [userId, setUserId] = useState('');
   const [userPassword, setuserPassword] = useState('');
 
   const changeId = (e) =>{
-    setUserId(e.target.value);
+    const cId = (e.target.value).replace(/[ ~!@\#$%^&*\()\-=+_'\;<>\/.\`:\"\\,\[\]?|{}]/gi, "");
+    e.target.value = cId
+    setUserId(cId);
+    
   }
   const changePw = (e) =>{
-    setuserPassword(e.target.value);
+    const cPw = (e.target.value).replace(/ /gi, "");
+    e.target.value = cPw
+    setuserPassword(cPw);
   }
 
   const login = async () => {
@@ -52,9 +58,9 @@ export default function Login() {
     <div className={styles.loginContainer}>
       <h3 className={styles.loginTitle}>Login Page</h3>
       id:
-      <input onChange={changeId} type='text'></input>
+      <input onChange={changeId} type='text' maxLength="8"/>
       pw:
-      <input onChange={changePw} type='password'></input>
+      <input onChange={changePw} type='password' maxLength="12"/>
       <button onClick={login} className={styles.loginButton}>Login</button>
     </div>
   )

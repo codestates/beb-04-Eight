@@ -1,9 +1,8 @@
 .registerContainer{  
   display: flex;
   flex-direction: column;
-
-  margin-top: 20px;
-  margin-bottom: 100px;
+  
+  margin-bottom: 60px;
   gap: 5px;
 }
 
@@ -22,4 +21,8 @@
 
   align-self: center;
   
+}
+
+.confirmPwTxt{
+  font-size: 1.2ch;
 }
