@@ -4,6 +4,7 @@ const session = require("express-session");
 const fs = require("fs");
 const https = require("https");
 const apiRoutes = require("./routes");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -17,22 +18,23 @@ app.use(
   session({
     secret: "@eight",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-      domain: "localhost",
+      // domain: "localhost",
       path: "/",
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: "none",
       httpOnly: true,
-      secure: true, // true: HTTPS 프로토콜 통신에만 쿠키 전송
+      secure: false, // true: HTTPS 프로토콜 통신에만 쿠키 전송
     },
   })
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 const corsOptions = {
-  origin: "https://localhost:3000",
+  origin: true,
   methods: ["GET", "POST", "OPTIONS"],
   credentials: true, // 다른 도메인 간 쿠키 사용 허용 (true) (default:false)
 };

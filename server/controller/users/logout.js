@@ -6,5 +6,6 @@ module.exports = {
 
     res.status(200).json({ message: "로그아웃 성공" });
     req.session.destroy();
+    console.log("LOGOUT!!! ", req.session);
   },
 };
