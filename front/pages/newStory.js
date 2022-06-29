@@ -8,7 +8,7 @@ export default function newStory() {
  const [title, setTitle] = useState("");
  const [content, setContent] = useState("");
  
- const server_URL = 'https://96d994ff-25e3-4e2c-ba35-ee08bd9d8112.mock.pstmn.io'
+ const server_URL = 'https://fb32-59-15-196-112.ngrok.io/api/board/insertBoard'
 
 
  /* // 받아놓은 세션 값이 있으면 받아놓은 세션값을 서버에 전송해서 로그인 상태 확인 후 글쓰기 허용
@@ -38,7 +38,7 @@ export default function newStory() {
      .post(server_URL, { // 서버로 id와 글 제목, 내용을 같이 전달
       title: title,
        content : content
-     })
+     }, { withCredentials: true })
      .then((res) => {   // publish 이후 홈으로 라우팅
        Router.push("/")
        console.log(res);

@@ -34,13 +34,14 @@ export default function Login() {
 
   const login = async () => {
     const param = {
-      "userName": userId,
+      "userId": userId,
       "password": userPassword
     }
 
     await loginAPI(param)    
     .then((res)=>{
-      if(res === "success"){
+      console.log(res);
+      if(res === "login success"){
         alert("login complete!");
         return true;
       }else{

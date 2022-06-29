@@ -20,7 +20,7 @@ export default function Register({changePage}) {
   const [confirmPw, setConfirmPw] = useState(false);
 
   const register = async () => {
-    if(cPw){
+    if(confirmPw){
     const param = {
       "userId": userId,
       "userName": userName,
@@ -30,7 +30,7 @@ export default function Register({changePage}) {
     
     await registerAPI(param)
     .then((res)=>{
-      if(res === "success"){
+      if(res === "create User!"){
         alert("register complete!");
         return true;        
       }else{
