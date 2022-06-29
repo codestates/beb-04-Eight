@@ -8,6 +8,8 @@ module.exports ={
     post: async(req,res) => {
         
         try {
+            // 메타마스크 지갑 연동으로 변경할 경우 아래의 코드 사용
+            // const web3 = new Web3(window.ethereum); 
 
             const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 
@@ -46,9 +48,7 @@ module.exports ={
 
             web3.eth.accounts.signTransaction(rawTransaction, process.env.ETH_PRIVATEKEY) // 비밀키로 서명 후 트랜잭션 전송 
                 .then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
-                //.then(function(receipt){ console.log("Transaction receipt: ", receipt); getETHBalanceOf();  })
                 .then(req => { 
-                        /* The trx was done. Write your acctions here. For example getBalance */
                         getTOKENBalanceOf(address)
                         .then ( balance => {
                              const userBalance = balance;
@@ -56,8 +56,8 @@ module.exports ={
                                 message: "Serving Successed",
                                 data: {
                                     userId: userId,  // 사용자 아이디
-                                    address: address,  // 받는 계정의 주소
-                                    tokenBalance: userBalance, // 유저의 토큰 잔액
+                                    address: address,  // 사용자 계정의 지갑 주소
+                                    tokenBalance: userBalance, // 사용자의 토큰 잔액
                                 }
                             })
                         });

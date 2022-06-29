@@ -6,6 +6,9 @@ dotenv.config();
 module.exports = {
     post: async (req, res) => {
       try {
+        // 메타마스크 지갑 연동으로 변경할 경우 아래의 코드 사용
+        // const web3 = new Web3(window.ethereum); 
+
         const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545')); //가나슈로부터 web3 객체 생성
 
         const accounts = await web3.eth.getAccounts(); // 가나슈 계정 받아오기
@@ -39,8 +42,8 @@ module.exports = {
 
           res.status(200).json({message: "Faucet Successed",
           data: {
-              address: address.dataValues.address.toString(),  // 사용자의 주소
-              balance: serverBalance,  // 사용자 이더 잔액
+              address: address.dataValues.address.toString(),  // 서버 계정의 지갑 주소
+              balance: serverBalance,  // 서버 계정 이더 잔액
               txHash: sendResult.transactionHash  // 이더 faucet 트랜잭션 해시
           }});
         } else {

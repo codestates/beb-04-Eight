@@ -14,11 +14,10 @@ module.exports = {
 
             const userAddress = userData.dataValues.address.toString();
 
-            // userAddress엔 컨트랙트 배포한 주소가 들어가야함
-            // 가나슈 지갑 주소로 넣어야 테스트 가능
-            // const userAddress = '0x5D2F2d0ba7F19786d629FFBc34c7Bd6F901FD922'
-
             const targetAddress = req.body.targetAddress;
+
+            // 메타마스크 지갑 연동으로 변경할 경우 아래의 코드 사용
+            // const web3 = new Web3(window.ethereum); 
 
             const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
 
