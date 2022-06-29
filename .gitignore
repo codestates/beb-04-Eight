@@ -3,6 +3,5 @@
 .env
 .pack
 .old
-.json
 .hot-update.js
 .DS_Store
