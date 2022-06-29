@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function contentList (){
   try{
-    const result = await axios.get(`https://12062188-9e72-4a09-853a-00c16cf50029.mock.pstmn.io/board/boardList`, { withCredentials: true })    
+    const result = await axios.get(`https://ce3e6975-1df4-4129-b028-11419fcf2929.mock.pstmn.io/api/board/boardList`)    
     .then((res)=>{
       return res.data
     })
