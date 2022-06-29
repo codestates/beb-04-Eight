@@ -1,0 +1,9 @@
+.next 
+node_modules
+.env
+/server
+.pack
+.old
+.json
+.hot-update.js
+.DS_Store
