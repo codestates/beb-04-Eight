@@ -1,8 +1,0 @@
-/front/.next 
-/front/node_modules
-.env
-.pack
-.old
-.json
-.hot-update.js
-.DS_Store
