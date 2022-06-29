@@ -3,6 +3,8 @@ const { Board, User } = require("../../models");
 module.exports = {
   post: async (req, res) => {
     // ERROR: 미로그인 상태
+    console.log("insert Board!!! ", req.session);
+
     if (!req.session.userId) {
       return res.status(401).json({ message: "Not authorized" });
     }
