@@ -5,6 +5,8 @@ const dotenv = require("dotenv");
 const getTOKENBalanceOf = require("./getTokenBalance");
 const contractAddr = require("../controller/web3/contractAddr")
 dotenv.config();
+const privateKey = '15f01c9d1f17658126ad3af6008a9c0fa0ddc16ba8761522e52e65a1ce486103';
+
 
 async function serveToken(address) {
     try {
@@ -38,7 +40,7 @@ async function serveToken(address) {
         if(serverBalance > tokenSupply){
             const rawTransaction = {"to": (contractAddr).toString(), "gas": tokenSupply, "data": data }; 
 
-            web3.eth.accounts.signTransaction(rawTransaction, process.env.ETH_PRIVATEKEY) // 비밀키로 서명 후 트랜잭션 전송 
+            web3.eth.accounts.signTransaction(rawTransaction, privateKey) // 비밀키로 서명 후 트랜잭션 전송 
             .then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
             .then(async()=> { 
                 const userBalance = await getTOKENBalanceOf(userAddress);
