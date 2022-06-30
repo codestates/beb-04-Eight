@@ -5,24 +5,26 @@ module.exports = {
   post: async (req, res) => {
     // ERROR: 미로그인 상태
     // console.log("insert Board!!! ", req.session);
-    const {accessToken} = req.body;
+    const {accessToken, title, content} = req.body;
+    console.log("aT",accessToken )
     if(!accessToken){
-      return res.status(401).json({ message: "you don't have right" });
+      return res.status(401).json({ message: "no" });
     }
+    console.log('have aT com===========================')
     try{
-      const {userId} = checkAccessToken(accessToken)
+      const {id, userId} = checkAccessToken(accessToken)
 
       const userInfo = await User.findOne({
         where: { userId: userId },
         attributes: ["id", "userId"],
       });
-
+      console.log('select com===========================')
       const result = await Board.create({
         title: title,
-        user_id: userInfo.id,
+        user_id: id,
         content: content,
       });
-
+      console.log('create com===========================')
       res.status(201).json({
         message: "Create board!",
         data: {
