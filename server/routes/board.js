@@ -18,4 +18,7 @@ router.put("/boardDetail/:id", boardController.boardDetail.put);
 // * DELETE /board/boardDetail/:id
 router.delete("/boardDetail/:id", boardController.boardDetail.delete);
 
+// * GET /board/findAll
+router.post("/findall", boardController.findAll.post);
+
 module.exports = router;
