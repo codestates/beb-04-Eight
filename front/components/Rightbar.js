@@ -29,7 +29,7 @@ export default function Rightbar() {
 
   return (
     <div className={styles.rightbarContent}>
-      {loginState.login ? null : <button className={styles.login} onClick={modalOnOff}>Sign In</button>}
+      {loginState.accessToken ? null : <button className={styles.login} onClick={modalOnOff}>Sign In</button>}
       <Search/>
       {router.route === "/content/[id]" ? <UserInfo/> : null}
       <Trend/>   
