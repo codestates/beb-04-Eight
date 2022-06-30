@@ -3,6 +3,7 @@ const abi = require('./abi');
 const { User } = require("../../models");
 const contractAddr = require("./contractAddr")
 const getTokenBalance = require("../../Functions/getTokenBalance");
+const { checkAccessToken } = require("../../utils/jwt");
 const dotenv = require("dotenv");
 dotenv.config();
 
@@ -11,11 +12,14 @@ module.exports = {
         
         try {
 
+            const accessToken = req.body.accessToken;
+
+            const decoded = checkAccessToken(accessToken);
+
             const userData = await User.findOne({
-                where: { userId: req.body.userId },
+                where: { userId: decoded.userId },
                 attributes:  ['address', 'privateKey']
             });
-
             const userAddress = userData.dataValues.address.toString();
 
             const userPrivateKey = userData.dataValues.privateKey.toString();
