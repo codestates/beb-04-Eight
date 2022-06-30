@@ -1,18 +1,19 @@
 const { Board, User } = require("../../models");
+const { checkAccessToken } = require("../../utils/jwt");
 
 module.exports = {
   post: async (req, res) => {
     // ERROR: 미로그인 상태
-    console.log("insert Board!!! ", req.session);
-
-    if (!req.session.userId) {
-      return res.status(401).json({ message: "Not authorized" });
+    // console.log("insert Board!!! ", req.session);
+    const {accessToken} = req.body;
+    if(!accessToken){
+      return res.status(401).json({ message: "you don't have right" });
     }
+    try{
+      const {userId} = checkAccessToken(accessToken)
 
-    try {
-      const { title, content } = req.body;
       const userInfo = await User.findOne({
-        where: { userId: req.session.userId },
+        where: { userId: userId },
         attributes: ["id", "userId"],
       });
 
@@ -32,8 +33,39 @@ module.exports = {
           updatedAt: result.updatedAt + "+09:00",
         },
       });
-    } catch (err) {
+
+    } catch(err) {
       console.log(err);
     }
+    // if (!req.session.userId) {
+    //   return res.status(401).json({ message: "Not authorized" });
+    // }
+
+    // try {
+    //   const { title, content } = req.body;
+    //   const userInfo = await User.findOne({
+    //     where: { userId: req.session.userId },
+    //     attributes: ["id", "userId"],
+    //   });
+
+    //   const result = await Board.create({
+    //     title: title,
+    //     user_id: userInfo.id,
+    //     content: content,
+    //   });
+
+    //   res.status(201).json({
+    //     message: "Create board!",
+    //     data: {
+    //       userId: userInfo.userId,
+    //       title: result.title,
+    //       content: result.content,
+    //       createdAt: result.createdAt + "+09:00",
+    //       updatedAt: result.updatedAt + "+09:00",
+    //     },
+    //   });
+    // } catch (err) {
+    //   console.log(err);
+    // }
   },
 };
