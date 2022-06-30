@@ -2,7 +2,12 @@
   "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+<<<<<<< HEAD
   "/myBlogs": "pages/myBlogs.js",
   "/": "pages/index.js",
   "/newStory": "pages/newStory.js"
+=======
+  "/newStory": "pages/newStory.js",
+  "/myBlogs": "pages/myBlogs.js"
+>>>>>>> b2da06756e2ff5243314a85b21833164a15b0160
 }

@@ -2,7 +2,7 @@ const { Board, User } = require("../../models");
 const { checkAccessToken } = require("../../utils/jwt");
 
 module.exports = {
-  get: async (req, res) => {
+  post: async (req, res) => {
     try {
       const { id } = req.body;
       const data = await Board.findOne({

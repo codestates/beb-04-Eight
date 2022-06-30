@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 self.__BUILD_MANIFEST = {__rewrites:{beforeFiles:[],afterFiles:[],fallback:[]},"/":["static\u002Fchunks\u002Fpages\u002Findex.js"],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/myBlogs":["static\u002Fchunks\u002Fpages\u002FmyBlogs.js"],"/newStory":["static\u002Fchunks\u002Fpages\u002FnewStory.js"],sortedPages:["\u002F","\u002F_app","\u002F_error","\u002FmyBlogs","\u002FnewStory"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
+=======
+self.__BUILD_MANIFEST = {__rewrites:{beforeFiles:[],afterFiles:[],fallback:[]},"/":["static\u002Fchunks\u002Fpages\u002Findex.js"],"/_error":["static\u002Fchunks\u002Fpages\u002F_error.js"],"/detail":["static\u002Fchunks\u002Fpages\u002Fdetail.js"],"/myBlogs":["static\u002Fchunks\u002Fpages\u002FmyBlogs.js"],"/newStory":["static\u002Fchunks\u002Fpages\u002FnewStory.js"],sortedPages:["\u002F","\u002F_app","\u002F_error","\u002Fdetail","\u002FmyBlogs","\u002FnewStory"]};self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()
+>>>>>>> b2da06756e2ff5243314a85b21833164a15b0160
