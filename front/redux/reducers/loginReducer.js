@@ -1,13 +1,13 @@
-import {CHANGE_LOGIN_STATE} from '../actions'
+import {CHANGE_ACCESS_TOKEN} from '../actions'
 
 const initialState = {
-  login : false
+  accessToken : ""
 }
 const reducer = (state=initialState, action) =>{
   switch(action.type){
-    case CHANGE_LOGIN_STATE:
+    case CHANGE_ACCESS_TOKEN:
       return{
-        login: !(state.login)
+        accessToken: action.payload.accessToken
       }
     default: return state
   }

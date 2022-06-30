@@ -2,8 +2,8 @@ const { User } = require("../../models");
 
 module.exports = {
   get: async (req, res) => {
-    console.log("mypage!!! ", req.session);
-
+    // console.log("mypage!!! ", req.session);
+    console.log(req.body)
     if (!req.session.userId) {
       return res.status(401).json({ message: "not authorized" });
     }

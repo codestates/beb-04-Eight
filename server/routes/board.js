@@ -4,7 +4,7 @@ var router = express.Router();
 const { boardController } = require("../controller");
 
 // * GET /board/boardList
-router.get("/boardList", boardController.boardList.get);
+router.post("/boardList", boardController.boardList.post);
 
 // * POST /board/isnertBoard
 router.post("/insertBoard", boardController.insertBoard.post);

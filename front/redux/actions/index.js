@@ -1,5 +1,5 @@
 export const CHANGE_MODAL_STATE = "CHANGE_MODAL_STATE";
-export const CHANGE_LOGIN_STATE = "CHANGE_LOGIN_STATE";
+export const CHANGE_ACCESS_TOKEN = "CHANGE_ACCESS_TOKEN";
 export const CHANGE_WRITER = "CHANGE_WRITER"
 export const EMPTY_WRITER = "EMPTY_WRITER"
 export const SEARCH_BLOG = "SEARCH_BLOG"
@@ -13,9 +13,12 @@ export const changeModalState = () =>{
 }
 
 // 로그인 여부 액션
-export const changeLoginState = () =>{
+export const changeAccessToken = (_accessToken) =>{
   return {
-    type: CHANGE_LOGIN_STATE
+    type: CHANGE_ACCESS_TOKEN,
+    payload: {
+      accessToken: _accessToken
+    }
   }
 }
 

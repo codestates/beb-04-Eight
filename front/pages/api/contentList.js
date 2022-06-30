@@ -1,10 +1,11 @@
 import axios from "axios";
 
-export default async function contentList (){
+export default async function contentList (param){
   try{
-    const result = await axios.get(`https://ce3e6975-1df4-4129-b028-11419fcf2929.mock.pstmn.io/api/board/boardList`)    
+    const result = await axios.post(`https://localhost:4001/api/board/boardList`, param, { withCredentials: true })    
     .then((res)=>{
-      return res.data
+      console.log("res", res);
+      return res
     })
     return result;
   }catch(e){

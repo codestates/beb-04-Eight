@@ -1,9 +1,10 @@
 import axios from 'axios'
 
-export default async function logout(){
-  try{
-    const result = axios.post(`https://fb32-59-15-196-112.ngrok.io/api/users/logout`, { withCredentials: true })
+export default async function logout(param){
+  try{    
+    const result = axios.post(`https://localhost:4001/api/users/logout`,param, { withCredentials: true })
     .then((res)=>{
+      console.log("1",res)
       return res.data.message;
     })
     return result;

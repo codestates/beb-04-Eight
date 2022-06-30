@@ -1,7 +1,7 @@
 // import styles from '../../styles/Logout.module.css'
 import {BiExit} from 'react-icons/bi'
-import { useDispatch } from 'react-redux';
-import { changeLoginState } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeAccessToken } from '../../redux/actions';
 import logoutAPI from '../../pages/api/logout';
 import axios from 'axios';
 /*
@@ -16,18 +16,20 @@ import axios from 'axios';
 
 export default function Logout() {
   const dispatch = useDispatch();
-
+  const {accessToken} = useSelector(state => state.loginReducer)
   const logout = async() =>{
-    
-    await logoutAPI()
+    const param = {
+      accessToken: accessToken.accessToken
+    }
+    await logoutAPI(param)
     .then((res)=>{
         console.log(res)
         if(res === "로그아웃 성공"){
-          alert(res);
-          dispatch(changeLoginState());
+          dispatch(changeAccessToken());
+          alert(res);          
         }
         else{
-          alert("logout fail");
+          alert("로그아웃 실패");
         }
     })
   }

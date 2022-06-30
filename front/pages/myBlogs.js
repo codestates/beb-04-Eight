@@ -22,7 +22,7 @@ export default function myBlogs() {
     }, []); */  
     
 
-    const API_URL = "https://12062188-9e72-4a09-853a-00c16cf50029.mock.pstmn.io/board/boardList/"
+    const API_URL = "https://localhost:4000/api/board/boardList/"
 
     useEffect(() => {
       const alldata = async () => {

@@ -15,17 +15,17 @@ import { useSelector } from 'react-redux'
 미완: 
 */
 export default function Sidebar() {
-  const loginState = useSelector(state => state.loginReducer);
+  const token = useSelector(state => state.loginReducer);
 
   return (
     <div className={styles.siderContent}>
       <img className={styles.logo} src="/Temp.png"></img>
       <div className={styles.menu}>
         <Nav href={"/"} icon={<AiFillHome />}/>
-        {loginState.login ? <Nav href={"/myBlogs"} icon={<IoMdBookmarks />}/> : null}
-        {loginState.login ? <Nav href={"/newStory"} icon={<MdRateReview />}/> : null}
+        {token.accessToken ? <Nav href={"/myBlogs"} icon={<IoMdBookmarks />}/> : null}
+        {token.accessToken ? <Nav href={"/newStory"} icon={<MdRateReview />}/> : null}
       </div>
-      <div className={styles.logout}>{loginState.login ? <Logout /> : <></>}</div>
+      <div className={styles.logout}>{token.accessToken ? <Logout /> : <></>}</div>
     </div>
   );
 }

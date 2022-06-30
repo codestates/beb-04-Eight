@@ -16,8 +16,9 @@ router.get("/mypage", usersController.mypage.get);
 router.post("/join", usersController.join.post);
 
 // * GET /users/accessToken
-router.post("/join", usersController.join.post);
+router.get("/accesstoken", usersController.accesstoken.get);
 // * GET /users/refreshToken
-router.post("/join", usersController.join.post);
+router.get("/refreshtoken", usersController.refreshtoken.get);
 
 module.exports = router;
+

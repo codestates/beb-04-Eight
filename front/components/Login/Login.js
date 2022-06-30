@@ -2,7 +2,7 @@ import styles from '../../styles/Login.module.css'
 import loginAPI from '../../pages/api/login';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux';
-import { changeModalState, changeLoginState } from "../../redux/actions/index.js"
+import { changeModalState, changeAccessToken } from "../../redux/actions/index.js"
 
 /*
 ==================================================
@@ -40,10 +40,9 @@ export default function Login() {
 
     await loginAPI(param)    
     .then((res)=>{
-      console.log(res);
-      if(res === "login success"){
+      if(res.message === "login success"){
         alert("login complete!");
-        return true;
+        return res.data;
       }else{
         alert("check your ID or PW!")
         return false;
@@ -51,7 +50,7 @@ export default function Login() {
     })
     .then((res)=>{
       res ? dispatch(changeModalState()) : null
-      res ? dispatch(changeLoginState()) : null
+      res ? dispatch(changeAccessToken(res)) : null
     })
   }
 

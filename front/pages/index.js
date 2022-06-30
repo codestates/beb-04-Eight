@@ -14,7 +14,7 @@ import { useEffect, useState, useRef } from 'react';
 
 export default function Home({result}) {
   const targetRef = useRef();
-  const [blogData, SetblogData] = useState(result);
+  const [blogData, SetblogData] = useState([]);
   const [loading, SetLoading] = useState(false);
 
   const option = {
@@ -24,14 +24,16 @@ export default function Home({result}) {
   }
   console.log()
   useEffect(()=>{
-    async function listingNew(){
+    async function listingNew(){      
       if(targetRef){
+        const param = {"num": String(blogData.length)}
         SetLoading(true);
-        const result = await contentListAPI()
+        const result = await contentListAPI(param)
+        console.log('result', result);
         const observer = new IntersectionObserver((entries, observer) =>{
           entries.forEach(entry =>{
             if(entry.isIntersecting){
-              result ? SetblogData([...blogData, ...result]) : SetblogData([...blogData]);              
+              result.data.count ? SetblogData([...blogData, ...result.data.data]) : null;              
             }
           })
         } ,option)
@@ -50,7 +52,7 @@ export default function Home({result}) {
       <div className={styles.homeAuth_blogs}>
         {blogData.map((data, i) => {            
             return (
-              <Content key={data.id} id={data.id} title={data.title} content={data.content} writer={data.writer} create_date={data.create_date}/>
+              <Content key={data.id} id={data.id} title={data.title} content={data.content} writer={data.User.userId} create_date={data.createdAt}/>
             );
           })}
         {loading ? <img src='https://i.stack.imgur.com/kOnzy.gif'  width={"200px"} height={"200px"}/> : null}
@@ -60,11 +62,11 @@ export default function Home({result}) {
   )
 }
 
-export const getStaticProps = async()=>{  
-  const result = await contentListAPI();
-  return {
-    props: {
-      result
-    }
-  }
-}
+// export const getStaticProps = async()=>{  
+//   const result = await contentListAPI();
+//   return {
+//     props: {
+//       result
+//     }
+//   }
+// }
