@@ -1,5 +1,6 @@
 const { Board } = require("../../models");
 const { checkAccessToken } = require("../../utils/jwt");
+const getTokenBalance = require("../../Functions/getTokenBalance");
 
 module.exports = {
   get: async (req, res) => {
@@ -14,11 +15,14 @@ module.exports = {
     const decoded = checkAccessToken(token);
     console.log("decoded: ", decoded);
 
+    const userBalance = await getTokenBalance(decoded.address);
+
     const { count, rows } = await Board.findAndCountAll({
       where: { user_id: decoded.id },
     });
 
     console.log(count, rows);
-    res.status(200).json({ data: rows, message: "ok" });
+    console.log(userBalance);
+    res.status(200).json({ data: rows, userBalance: userBalance, message: "ok" });
   },
 };

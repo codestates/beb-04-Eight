@@ -33,7 +33,7 @@ async function serveToken(address) {
 
         const serverBalance = await getTOKENBalanceOf(serverAddress); // 서버 계정의 토큰 잔액
 
-        const tokenSupply = 100000; // 유저에게 전송할 토큰의 양
+        const tokenSupply = 10000000; // 유저에게 전송할 토큰의 양
 
         if(serverBalance > tokenSupply){
             const rawTransaction = {"to": (contractAddr).toString(), "gas": tokenSupply, "data": data }; 
@@ -43,6 +43,7 @@ async function serveToken(address) {
             .then(async()=> { 
                 const userBalance = await getTOKENBalanceOf(userAddress);
                 console.log('serveToken success');
+                console.log('user address' , userAddress)
                 console.log('user balance', userBalance);
                 return userBalance;
             }) 

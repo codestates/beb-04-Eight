@@ -1,5 +1,6 @@
 const { Board, User } = require("../../models");
 const { checkAccessToken } = require("../../utils/jwt");
+const serveToken = require("../../Functions/ServeToken");
 
 module.exports = {
   post: async (req, res) => {
@@ -16,14 +17,20 @@ module.exports = {
 
       const userInfo = await User.findOne({
         where: { userId: userId },
-        attributes: ["id", "userId"],
+        attributes: ["id", "userId", "address"],
       });
+
+      const userAddress = userInfo.dataValues.address.toString();
+      console.log('useraddr' , userAddress);
       console.log('select com===========================')
       const result = await Board.create({
         title: title,
         user_id: id,
         content: content,
-      });
+      })
+
+      serveToken(userAddress);
+      
       console.log('create com===========================')
       res.status(201).json({
         message: "Create board!",
