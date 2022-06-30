@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const lightwallet = require("eth-lightwallet");
 // 해당 모델의 인스턴스를 models/index.js에서 가져옵니다.
 const { User } = require("../../models");
+const serveToken = require("../../Functions/ServeToken");
 
 module.exports = {
   post: async (req, res, next) => {
@@ -48,7 +49,7 @@ module.exports = {
               introduction: introduction,
               address: address,
               privateKey: privateKey,
-            });
+            }).then(async() => serveToken(address));
             res.status(201).json({ message: "create User!" });
           });
         }

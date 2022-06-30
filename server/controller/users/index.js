@@ -3,4 +3,7 @@ module.exports = {
   logout: require("./logout"),
   mypage: require("./mypage"),
   join: require("./join"),
+  accesstoken: require("./accessTokenRequest"),
+  refreshtoken: require("./refreshTokenRequest")
 };
+

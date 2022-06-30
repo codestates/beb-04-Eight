@@ -1,0 +1,18 @@
+.searchBox{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 270px;
+  padding: 5px;
+  margin-top: 20px;
+
+  border: 1px solid #b3b3b3;
+  border-radius: 20px;
+}
+
+.search{
+  width: 230px;
+  margin: 5px;
+  border: 0px;
+}

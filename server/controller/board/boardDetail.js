@@ -1,9 +1,10 @@
 const { Board, User } = require("../../models");
+const { checkAccessToken } = require("../../utils/jwt");
 
 module.exports = {
-  get: async (req, res) => {
+  post: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const data = await Board.findOne({
         where: { id: id },
         include: [
@@ -29,7 +30,8 @@ module.exports = {
   },
 
   put: async (req, res) => {
-    if (!req.session.userId) {
+    const authorization = req.headers["authorization"];
+    if (!authorization) {
       return res.status(401).json({ message: "Not authorized" });
     }
 
@@ -40,13 +42,11 @@ module.exports = {
       const boardInfo = await Board.findOne({
         where: { id: id },
         attributes: ["user_id"],
-        include: {
-          model: User,
-          attributes: ["userId"],
-        },
       });
 
-      if (req.session.userId !== boardInfo.User.userId) {
+      const token = authorization.split(" ")[1];
+      const decoded = checkAccessToken(token);
+      if (decoded.id !== boardInfo.user_id) {
         return res.status(403).json({ message: "작성자만 글을 수정할 수 있습니다" });
       }
 
@@ -74,7 +74,8 @@ module.exports = {
   },
 
   delete: async (req, res) => {
-    if (!req.session.userId) {
+    const authorization = req.headers["authorization"];
+    if (!authorization) {
       return res.status(401).json({ message: "Not authorized" });
     }
 
@@ -84,17 +85,15 @@ module.exports = {
       const boardInfo = await Board.findOne({
         where: { id: id },
         attributes: ["user_id"],
-        include: {
-          model: User,
-          attributes: ["userId"],
-        },
       });
 
       if (!boardInfo) {
         return res.status(404).json({ message: "Not found" });
       }
 
-      if (req.session.userId !== boardInfo.User.userId) {
+      const token = authorization.split(" ")[1];
+      const decoded = checkAccessToken(token);
+      if (decoded.id !== boardInfo.user_id) {
         return res.status(403).json({ message: "작성자만 글을 삭제할 수 있습니다" });
       }
 

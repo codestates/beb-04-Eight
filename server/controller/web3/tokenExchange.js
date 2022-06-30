@@ -1,66 +1,67 @@
 const Web3 = require('web3');
 const abi = require('./abi');
 const { User } = require("../../models");
+const contractAddr = require("./contractAddr")
+const getTokenBalance = require("../../Functions/getTokenBalance");
+const { checkAccessToken } = require("../../utils/jwt");
+const dotenv = require("dotenv");
+dotenv.config();
 
 module.exports = {
     post : async(req, res) => {
         
         try {
 
-            const userData = await User.findOne({
-                where: { userId: req.session.userId },
-                attributes:  ['address']
-            });
+            const accessToken = req.body.accessToken;
 
+            const decoded = checkAccessToken(accessToken);
+
+            const userData = await User.findOne({
+                where: { userId: decoded.userId },
+                attributes:  ['address', 'privateKey']
+            });
             const userAddress = userData.dataValues.address.toString();
 
-            // userAddress엔 컨트랙트 배포한 주소가 들어가야함
-            // 가나슈 지갑 주소로 넣어야 테스트 가능
-            // const userAddress = '0x5D2F2d0ba7F19786d629FFBc34c7Bd6F901FD922'
+            const userPrivateKey = userData.dataValues.privateKey.toString();
 
             const targetAddress = req.body.targetAddress;
-
-            const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545'));
-
-            const myContract = new web3.eth.Contract(abi, process.env.CONTRACT_ADDRESS);
             
-            //컨트랙트의 해당 토큰 잔액 조회
-            async function getBalance(toAddress){
-                return await myContract.methods.balanceOf(toAddress).call();
-            }
-            //컨트랙트의 토큰 transfer 
-            async function setTransfer(toAddress,amount){ 
-                const result = await myContract.methods.transfer(toAddress, parseInt(amount)).send(
-                    {from: userAddress, gasPrice: 100, gas: 100000},
-                    function(err, txhash){
-                        try{
-                            console.log(txhash);
-                        }catch(err){
-                            console.log( "Error "+err.toString());
-                        }
-                    }
-                )
-                return result;
-            }
-            const beforeBalance = await getBalance(userAddress);
+            const web3 = new Web3('https://ropsten.infura.io/v3/ef5065bb61304474b34bae83c3406c05');
+
+            web3.eth.accounts.privateKeyToAccount(userPrivateKey);
+
+            const myContract = new web3.eth.Contract(abi, (contractAddr).toString());
             
-            const serveAmount = req.body.serveAmount; 
+            const beforeBalance = parseInt(await getTokenBalance(userAddress)); // 사용자의 토큰 잔액
+            
+            const serveTokenAmount = parseInt(req.body.serveAmount);  // 전송할 토큰 양
 
-            if(beforeBalance >= serveAmount){
-                setTransfer(targetAddress,serveAmount)
+            const data = myContract.methods.transfer(targetAddress, serveTokenAmount).encodeABI();
 
-                const userBalance = await getBalance(userAddress);
-                const targetBalance = await getBalance(targetAddress);
+            if(beforeBalance > serveTokenAmount){  
+                const rawTransaction = {"to": (contractAddr).toString(), "gas": 1000000, "data": data }; 
 
-                res.status(200).json({
-                    message: "Serving Successed",
-                    data: {
-                        userAddr: userAddress,  // 사용자 지갑 주소
-                        userBalance: userBalance,  // 사용자 토큰 잔액
-                        targetAddr: targetAddress, // 타겟 지갑 주소
-                        targetBalance: targetBalance, // 타겟 토큰 잔액
-                    }
-                })
+                console.log(rawTransaction);
+                web3.eth.accounts.signTransaction(rawTransaction, userPrivateKey) // 비밀키로 서명 후 트랜잭션 전송 
+                .then(signedTx => web3.eth.sendSignedTransaction(signedTx.rawTransaction))
+                .then(req => { 
+                    getTokenBalance(userAddress)
+                    .then ( async () => { 
+                         const afterBalance = await getTokenBalance(userAddress);;
+                         const targetBalance = await getTokenBalance(targetAddress);
+                         res.status(200).json({
+                            message: "Serving Successed",
+                            data: {
+                                userAddr: userAddress,  // 사용자 지갑 주소
+                                userBalance: afterBalance,  // 사용자 토큰 잔액
+                                targetAddr: targetAddress, // 타겟 지갑 주소
+                                targetBalance: targetBalance, // 타겟 토큰 잔액
+                            }
+                        })
+                        console.log('Serving Successed');
+                    });
+                }) 
+                
             } else {
                 res.status(502).send('Error: tokenExchange Transaction Failed')
             }

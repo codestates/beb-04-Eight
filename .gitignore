@@ -1,0 +1,9 @@
+/front/.next/
+/front/node_modules/
+/server/node_modules/
+.env
+.pack
+.old
+.DS_Store
+*.pem
+.next

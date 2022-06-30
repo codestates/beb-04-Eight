@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const { User } = require("../../models"); // 해당 모델의 인스턴스를 models/index.js에서 가져옴
+const {  generateAccessToken, generateRefreshToken } = require("../../utils/jwt");
 
 module.exports = {
   post: async (req, res) => {
@@ -19,11 +20,15 @@ module.exports = {
       if (!result) {
         return res.status(401).json({ message: "비밀번호가 틀렸습니다" });
       }
-      // 비밀번호가 일치한다면, session에 아이디 정보 저장
-      req.session.save(function () {
-        req.session.userId = userInfo.userId;
-        res.status(200).json({ message: "login success" });
-      });
+
+      const accessToken = generateAccessToken(userInfo.dataValues); // accessToken
+      const refreshToken = generateRefreshToken(userInfo.dataValues); // refreshToken
+    
+      const option = { httpOnly: true }
+      res.cookie("refreshToken", refreshToken, option);
+    
+      return res.status(200).send({ data: { accessToken }, message: "login success" });
+
     } catch (err) {
       console.log(err);
     }
