@@ -10,7 +10,7 @@ router.post("/boardList", boardController.boardList.post);
 router.post("/insertBoard", boardController.insertBoard.post);
 
 // * GET /board/boardDetail/:id
-router.get("/boardDetail/:id", boardController.boardDetail.get);
+router.post("/boardDetail", boardController.boardDetail.post);
 
 // * PUT /board/boardDetail/:id
 router.put("/boardDetail/:id", boardController.boardDetail.put);

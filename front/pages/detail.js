@@ -19,7 +19,7 @@ import { useRouter } from 'next/router'
 export default function detail() {
 
   const router = useRouter()
-  const [data, setData] = useState({title:'', writer:'', content:''})
+  const [data, setData] = useState({title:'', userId:'', content:''})
   const id = router.asPath.split("=")[1];
 
   useEffect(()=>{
@@ -27,15 +27,15 @@ export default function detail() {
       const param = { id: id}
       console.log(param)
       const result = await contentDetailAPI(param);
-      console.log(result.data.data)
-      setData(result.data.data[0]);        
+      console.log("red",result.data.data)
+      setData(result.data.data);        
     }
     listingNew()
   },[])
 
   return (
     <div className={styles.detail_container}>
-      <DetailUser writer={data.writer} />
+      <DetailUser writer={data.userId} />
       <div className={styles.detail_title}>{data.title}</div>
       <div className={styles.detail_content}>{data.content}</div>
     </div>
