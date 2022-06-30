@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export default async function contentDetail (){
-  try{
-    const result = await axios.get(`https://localhost:4001/api/board/boardList`, { withCredentials: true })    
-    .then((res)=>{
-      return res.data
-    })
+export default async function contentDetail() {
+  try {
+    const result = await axios.post(`https://localhost:4001/api/board/findAll`, {}, { withCredentials: true, rejectUnauthorized: false, strictSSL: false }).then((res) => {
+      console.log("==========");
+      return res;
+    });
     return result;
-  }catch(e){
+  } catch (e) {
     console.log(e);
   }
 }
