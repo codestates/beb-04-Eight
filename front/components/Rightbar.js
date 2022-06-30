@@ -1,11 +1,11 @@
-import styles from '../styles/Rightbar.module.css'
-import ModalWrap from './Login/Wrap'
-import UserInfo from './Rightbar/UserInfo'
-import Search from './Rightbar/Search'
-import Trend from './Rightbar/Trend'
-import { useSelector, useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
-import { changeModalState } from "../redux/actions/index.js"
+import styles from "../styles/Rightbar.module.css";
+import ModalWrap from "./Login/Wrap";
+import UserInfo from "./Rightbar/UserInfo";
+import Search from "./Rightbar/Search";
+import Trend from "./Rightbar/Trend";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
+import { changeModalState } from "../redux/actions/index.js";
 
 /*
 ==================================================
@@ -20,19 +20,23 @@ import { changeModalState } from "../redux/actions/index.js"
 export default function Rightbar() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const modalState = useSelector(state => state.modalReducer);
-  const loginState = useSelector(state => state.loginReducer);
-  
-  const modalOnOff = () =>{
+  const modalState = useSelector((state) => state.modalReducer);
+  const loginState = useSelector((state) => state.loginReducer);
+
+  const modalOnOff = () => {
     dispatch(changeModalState());
-  }
+  };
 
   return (
     <div className={styles.rightbarContent}>
-      {loginState.accessToken ? null : <button className={styles.login} onClick={modalOnOff}>Sign In</button>}
-      <Search/>
-      {router.route === "/content/[id]" ? <UserInfo/> : null}
-      <Trend/>   
+      {loginState.accessToken ? null : (
+        <button className={styles.login} onClick={modalOnOff}>
+          Sign In
+        </button>
+      )}
+      <Search />
+      {router.route === "/content/[id]" ? <UserInfo /> : null}
+      <Trend />
       {modalState.currentState ? <ModalWrap /> : null}
     </div>
   );
