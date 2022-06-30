@@ -19,6 +19,6 @@ router.put("/boardDetail/:id", boardController.boardDetail.put);
 router.delete("/boardDetail/:id", boardController.boardDetail.delete);
 
 // * GET /board/findAll
-router.post("/findall", boardController.findAll.post);
+router.get("/findall", boardController.findAll.get);
 
 module.exports = router;

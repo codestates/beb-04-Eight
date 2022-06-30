@@ -21,6 +21,7 @@ export default function Home({result}) {
     root : null,
     rootMargin: '0px',
     threshold: 1,
+    delay: 1000,
   }
   console.log()
   useEffect(()=>{
@@ -29,11 +30,10 @@ export default function Home({result}) {
         const param = {"num": String(blogData.length)}
         SetLoading(true);
         const result = await contentListAPI(param)
-        console.log('result', result);
-        const observer = new IntersectionObserver((entries, observer) =>{
+        const observer = new IntersectionObserver((entries) =>{
           entries.forEach(entry =>{
             if(entry.isIntersecting){
-              result.data.count ? SetblogData([...blogData, ...result.data.data]) : null;              
+              SetblogData([...blogData, ...result.data.data]);              
             }
           })
         } ,option)

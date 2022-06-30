@@ -1,9 +1,10 @@
 import axios from "axios";
 
-export default async function contentDetail() {
+export default async function contentDetail(param) {
   try {
-    const result = await axios.post(`https://localhost:4001/api/board/findAll`, {}, { withCredentials: true, rejectUnauthorized: false, strictSSL: false }).then((res) => {
-      console.log("==========");
+    const result = axios.post(`https://localhost:4001/api/board/boardDetail`,param)
+    .then((res) => {
+      console.log("==========", res);
       return res;
     });
     return result;

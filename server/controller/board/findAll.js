@@ -1,7 +1,7 @@
 const { Board, User } = require("../../models");
 
 module.exports = {
-  post: async (req, res) => {
+  get: async (req, res) => {
     try {
       console.log("findAll");
       const { count, rows } = await Board.findAndCountAll({

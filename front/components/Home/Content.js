@@ -1,5 +1,7 @@
 import styles from '../../styles/Content_comp.module.css'
 import Link from 'next/link'
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
 /*
 ==================================================
@@ -12,18 +14,24 @@ import Link from 'next/link'
 */
 
 export default function Content({ id, title, content, writer, create_date } ) {
-  return (
-    <Link href={'/content/'+id} >
-      <a className={styles.content_containcer}>
+  const dispatch = useDispatch();
+
+
+  // const setId = () =>{
+  //   console.log("id save:", id);    
+  //   dispatch(setId(id));
+  //   return true
+  // }
+
+  return (    
+    <Link href={'/detail?id='+id} >
+      <a className={styles.content_containcer} >
       <div className={styles.content_txtSide}>
         <div className={styles.content_writer}>{writer}</div>
         <div className={styles.content_title}>{title}</div>
         <div className={styles.content_text}>{content.slice(0,100)}</div>
         <div className={styles.content_date}>{create_date}</div>
       </div>
-      {/* <div className={styles.content_imgSide}>
-        <img className={styles.img} src='/Temp.png'></img>
-      </div> */}
       </a>
     </Link>
   )
