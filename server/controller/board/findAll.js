@@ -1,7 +1,7 @@
 const { Board, User } = require("../../models");
 
 module.exports = {
-  get: async (req, res) => {
+  post: async (req, res) => {
     try {
       console.log("findAll");
       const { count, rows } = await Board.findAndCountAll({
@@ -10,7 +10,7 @@ module.exports = {
 
       console.log(rows);
       res.status(200).json({
-        message: "get board LIST success",
+        message: "success",
         count: count,
         data: rows,
       });
