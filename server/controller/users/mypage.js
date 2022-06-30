@@ -1,18 +1,24 @@
-const { User } = require("../../models");
+const { Board } = require("../../models");
+const { checkAccessToken } = require("../../utils/jwt");
 
 module.exports = {
   get: async (req, res) => {
-    // console.log("mypage!!! ", req.session);
-    console.log(req.body)
-    if (!req.session.userId) {
-      return res.status(401).json({ message: "not authorized" });
+    const authorization = req.headers["authorization"];
+    console.log("req.headers: ", req.headers);
+
+    if (!authorization) {
+      return res.status(400).send({ data: null, message: "invalid access token" });
     }
 
-    const result = await User.findOne({
-      where: { userId: req.session.userId },
-      attributes: { exclude: ["password", "privateKey"] },
+    const token = authorization.split(" ")[1];
+    const decoded = checkAccessToken(token);
+    console.log("decoded: ", decoded);
+
+    const { count, rows } = await Board.findAndCountAll({
+      where: { user_id: decoded.id },
     });
 
-    res.status(200).json({ data: result, message: "ok" });
+    console.log(count, rows);
+    res.status(200).json({ data: rows, message: "ok" });
   },
 };
