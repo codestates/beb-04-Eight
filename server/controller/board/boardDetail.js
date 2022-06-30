@@ -4,7 +4,7 @@ const { checkAccessToken } = require("../../utils/jwt");
 module.exports = {
   get: async (req, res) => {
     try {
-      const { id } = req.params;
+      const { id } = req.body;
       const data = await Board.findOne({
         where: { id: id },
         include: [

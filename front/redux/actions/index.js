@@ -3,7 +3,7 @@ export const CHANGE_ACCESS_TOKEN = "CHANGE_ACCESS_TOKEN";
 export const CHANGE_WRITER = "CHANGE_WRITER"
 export const EMPTY_WRITER = "EMPTY_WRITER"
 export const SEARCH_BLOG = "SEARCH_BLOG"
-
+export const SET_ID = "SET_ID"
 
 // 모달 여닫는 액션
 export const changeModalState = () =>{
@@ -43,9 +43,19 @@ export const emptyWriter = () =>{
 // 검색 키워드 변경 액션
 export const searchBlog = (_keyword) =>{
   return {
-    type: SEARCH_BLOG,
+    type: SET_ID,
     payload: {
       keyword: _keyword
+    }
+  }
+}
+
+// 검색 키워드 변경 액션
+export const setId = (_id) =>{
+  return {
+    type: SEARCH_BLOG,
+    payload: {
+      id: _id
     }
   }
 }
