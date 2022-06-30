@@ -8,7 +8,7 @@ export default function newStory() {
  const [title, setTitle] = useState("");
  const [content, setContent] = useState("");
  
- const server_URL = 'https://localhost:4000/api/board/insertBoard'
+ const server_URL = 'https://localhost:4001/api/board/insertBoard'
 
 
  /* // 받아놓은 세션 값이 있으면 받아놓은 세션값을 서버에 전송해서 로그인 상태 확인 후 글쓰기 허용
