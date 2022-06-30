@@ -1,6 +1,11 @@
 .writeForm {
   position: relative;
   margin-top: 30px;
+  width:  100%;
+  min-width: 900px;
+  max-width: 1000px;
+  margin-left: 40px;
+  margin-right: 40px;;
 }
 
 .writeFormGroup {
