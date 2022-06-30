@@ -33,20 +33,7 @@
     "/myBlogs": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-<<<<<<< HEAD
-=======
-      "static/chunks/pages/detail.js"
-    ],
-    "/myBlogs": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
->>>>>>> b2da06756e2ff5243314a85b21833164a15b0160
       "static/chunks/pages/myBlogs.js"
-    ],
-    "/newStory": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/newStory.js"
     ]
   },
   "ampFirstPages": []

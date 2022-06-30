@@ -7,6 +7,8 @@ import axios from "axios"; // 백엔드랑 프론트엔드랑 통신을 쉽게�
 export default function myBlogs() {
 
   const [blogs, setBlogs] = useState([]);
+  const [userData, setUserData] = useState("");
+  const [userBalance, setUserBalance] = useState("");
   const [receiver, setReceiver] = useState("");     // target 주소 ( 토큰)
   const [amount, setAmount] = useState("");         // 목표 전송 갯수 ( 토큰 )
   const {accessToken} = useSelector(state => state.loginReducer) // jwt 토큰 쿠키
@@ -20,6 +22,8 @@ export default function myBlogs() {
         const response = await axios.get(API_URL);
         console.log(response.data.data);
         setBlogs(response.data.data); // 데이터는 response.data.data 안에 들어있습니다.
+        setUserData(response.data.userData);
+        setUserBalance(response.data.userBalance);
       } catch (e) {
         console.error(e);
       }
@@ -69,9 +73,9 @@ export default function myBlogs() {
       </div>
       
       {/*이름, 폰번호, 토큰 잔액 정보*/}
-      <div className={styles.name}> name : {blogs.userName} </div>
-      <div className={styles.description}> PhoneNum : {blogs.phone} </div>
-      <div className={styles.myToken}>myToken : {blogs.tokenBalance} </div>
+      <div className={styles.name}> name : {userData.userName} </div>
+      <div className={styles.description}> PhoneNum : {userData.phone} </div>
+      <div className={styles.myToken}>myToken : {userBalance} </div>
 
     {/*receiver 주소 입력칸*/ }
     <div className={styles.token_wrap}> 
