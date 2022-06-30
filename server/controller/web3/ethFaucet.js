@@ -6,22 +6,20 @@ dotenv.config();
 module.exports = {
     post: async (req, res) => {
       try {
-        // 메타마스크 지갑 연동으로 변경할 경우 아래의 코드 사용
-        // const web3 = new Web3(window.ethereum); 
 
-        const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:7545')); //가나슈로부터 web3 객체 생성
+        const web3 = new Web3('https://ropsten.infura.io/v3/ef5065bb61304474b34bae83c3406c05'); 
 
-        const accounts = await web3.eth.getAccounts(); // 가나슈 계정 받아오기
+        const accounts = '0x7d92d20Bab36c5dBad87A89e30bCcD8DE6f8b02e'
 
-        const balance = await web3.eth.getBalance(accounts[0]); // 가나슈 계정 잔액 
+        const balance = await web3.eth.getBalance(accounts); 
 
-        const oneEth = 1000000000000000000;
+        const oneEth = 10000000000000000;
 
         const gasLimit = 2000000;
 
         //userId가 server인 데이터의 address를 가져온다. 
         const address = await User.findOne({
-          where: { userId: req.session.userId },
+          where: { userId: req.body.userId },
           attributes:  ['address']
         });
 

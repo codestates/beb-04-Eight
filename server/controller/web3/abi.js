@@ -352,4 +352,4 @@ const abi = [
 	}
 ]
 
-module.exports = abi
+module.exports = abi;
