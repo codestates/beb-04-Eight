@@ -7,7 +7,7 @@ module.exports = {
     post: async (req, res) => {
       try {
 
-        const web3 = new Web3('https://ropsten.infura.io/v3/ef5065bb61304474b34bae83c3406c05'); 
+        const web3 = new Web3('https://goerli.infura.io/v3/ef5065bb61304474b34bae83c3406c05'); 
 
         const accounts = '0x7d92d20Bab36c5dBad87A89e30bCcD8DE6f8b02e'
 

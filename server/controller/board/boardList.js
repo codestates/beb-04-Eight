@@ -8,8 +8,9 @@ module.exports = {
       const temp = Number(num);
       console.log("num", temp);
       const { count, rows } = await Board.findAndCountAll({
-        where: { id: { [Op.gte]: temp, [Op.lt]: temp + 10 } },
+        
         include: { model: User, attributes: ["userId"] },
+        order: [["updatedAt", "desc"]]
       });
 
       res.status(200).json({

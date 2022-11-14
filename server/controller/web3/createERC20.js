@@ -8,7 +8,7 @@ module.exports = {
     post: async(req,res) => {
         try {
 
-            const web3 = new Web3('https://ropsten.infura.io/v3/ef5065bb61304474b34bae83c3406c05'); 
+            const web3 = new Web3('https://goerli.infura.io/v3/ef5065bb61304474b34bae83c3406c05'); 
 
             web3.eth.accounts.privateKeyToAccount(process.env.ETH_PRIVATEKEY);
 

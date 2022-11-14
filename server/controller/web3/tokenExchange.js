@@ -26,7 +26,7 @@ module.exports = {
 
             const targetAddress = req.body.targetAddress;
             
-            const web3 = new Web3('https://ropsten.infura.io/v3/ef5065bb61304474b34bae83c3406c05');
+            const web3 = new Web3('https://goerli.infura.io/v3/ef5065bb61304474b34bae83c3406c05');
 
             web3.eth.accounts.privateKeyToAccount(userPrivateKey);
 

@@ -1,3 +1,3 @@
-const contractAddr = '0x676195e910CA547af760dc2f09afA89fbEFF0eF3';
+const contractAddr = '0xebacedb13f15f367d5cdfe4478707345d00004bf';
 
 module.exports = contractAddr;
